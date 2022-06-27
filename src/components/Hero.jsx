@@ -10,9 +10,9 @@ function Hero() {
 
   // md:h-[83vh]
   return (
-    <div className="bg-discord_blue pb-8 md:pb-0">
-      <div className="p-7 py-9 h-screen md:flex relative">
-        <div className="flex flex-col gap-7 md:max-w-md lg:max-w-none lg:justify-center ">
+    <div className="bg-discord_blue pb-8 md:pb-0 h-screen lg:max-w-screen   ">
+      <div className="p-7 md:flex w-full mx-auto mt-0 justify-between py-40">
+        <div className="flex flex-col gap-7 md:max-w-md lg:max-w-full lg:justify-center ">
           <h1 className="text-5xl text-white font-bold">Your place to talk</h1>
           <h2 className="text-white text-lg font-light tracking-wide lg:max-w-3xl w-full">
             Whether you’re part of a school club, gaming group, worldwide art
@@ -30,16 +30,16 @@ function Hero() {
             </button>
           </div>
         </div>
-        <div className="flex-grow">
+        <div className=" ">
           <img
             src="../bot.png"
             alt=""
-            className="absolute -left-36 mt-16 sm:-left-44 md:hidden"
+            className=" -left-36 mt-16 sm:-left-44 md:hidden h-80"
           />
           <img
             src="../rightside.png"
             alt=""
-            className="hidden md:inline absolute"
+            className="hidden md:inline  h-80"
           />
         </div>
       </div>
