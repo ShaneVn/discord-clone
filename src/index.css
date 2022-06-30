@@ -7,4 +7,8 @@
   .link{
     @apply cursor-pointer font-semibold text-sm hover:underline text-white
   }
+
+  .server-default{
+    @apply h-12 bg-[#36393f] rounded-full flex justify-center items-center cursor-pointer hover:rounded-2xl transition-all duration-100 ease-out
+  }
 }

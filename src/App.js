@@ -1,6 +1,8 @@
 import './App.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import Home from './components/Home';
+
 import {
   BrowserRouter,
   Routes,
@@ -17,7 +19,9 @@ function App() {
           
             <Route exact path='/' element={<><Header/><Hero/></>}/>
 
-            <Route  path='test' element={<Hero/>}/>
+            <Route exact path='/channels' element={<Home/>}/>
+
+            <Route exact path='/channels/:id' element={<Home/>}/>
 
           </Routes>
         </BrowserRouter>

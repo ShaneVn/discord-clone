@@ -39,7 +39,7 @@ function Hero() {
           <img
             src="../rightside.png"
             alt=""
-            className="hidden md:inline  h-80"
+            className="hidden md:inline  h-90"
           />
         </div>
       </div>
