@@ -2,8 +2,8 @@ import React from 'react'
 
 function Channel() {
   return (
-    <div>
-      Channel
+    <div className='self-start'>
+      # Channel
     </div>
   )
 }

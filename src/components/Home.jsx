@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import { Navigate } from "react-router-dom";
 import ServerIcon from "./ServerIcon";
 import { ChevronDownIcon, PlusIcon } from "@heroicons/react/outline";
@@ -8,6 +8,16 @@ import Channel from "./Channel";
 
 function Home() {
   const [user] = useAuthState(auth);
+
+  const handleAddChannel = ()=> {
+    const channelName = prompt("Enter a new channel name")
+
+    if( channelName){
+      db.collection("channels").add({
+        channelName: channelName,
+      })
+    }
+  }
 
   return (
     <>
@@ -40,18 +50,23 @@ function Home() {
             <ChevronDownIcon className="h-5 ml-2" />
           </h2>
 
+          
+
           <div className="text-discord_channel flex-grow first-letter:overflow-y-scroll scrollbar-hide">
             <div className="flex items-center p-2 mb-2">
               <ChevronDownIcon className="h-3 mr-2" />
               <h4 className="font-semibold">channels</h4>
-              <PlusIcon className="h-6 ml-auto cursor-pointer hover:text-white" />
+              <PlusIcon className="h-6 ml-auto cursor-pointer hover:text-white" 
+              onClick={handleAddChannel}/>
               
             </div>
-            
+          
             <div className="flex flex-col space-y-2 px-2 mb-4">
               <Channel className="mb-14" />
             </div>
+           
           </div>
+          
         </div>
       </div>
     </>
