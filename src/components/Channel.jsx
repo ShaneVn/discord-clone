@@ -1,9 +1,11 @@
+import { HashtagIcon } from '@heroicons/react/outline'
 import React from 'react'
 
-function Channel() {
+function Channel({id, channelName}) {
   return (
     <div className='self-start'>
-      # Channel
+      <HashtagIcon/>
+      {channelName}
     </div>
   )
 }

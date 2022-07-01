@@ -1,27 +1,29 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db } from "../firebase";
+import { auth, db, app } from "../firebase";
 import { Navigate } from "react-router-dom";
 import ServerIcon from "./ServerIcon";
 import { ChevronDownIcon, PlusIcon } from "@heroicons/react/outline";
 import Channel from "./Channel";
-import { addDoc, collection} from "firebase/firestore"
-import firebase from 'firebase/compat/app'
+import { addDoc, collection, getFirestore, query } from "firebase/firestore";
+import firebase from "firebase/compat/app";
+import { useCollection } from 'react-firebase-hooks/firestore';
 
 function Home() {
   const [user] = useAuthState(auth);
+  const [channels] = useCollection(query(collection(db, "channels")))
 
+  
+  
   const handleAddChannel = async () => {
     const value = prompt("Enter a new channel name", "");
     if (value) {
-         addDoc(
-        collection(db, "channels"),
-        {
-          channelName: value,
-          timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
-        }
-      );
-      } }
+      addDoc(collection(db, "channels"), {
+        channelName: value,
+        timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+    }
+  };
 
   return (
     <>
@@ -54,23 +56,26 @@ function Home() {
             <ChevronDownIcon className="h-5 ml-2" />
           </h2>
 
-          
-
           <div className="text-discord_channel flex-grow overflow-y-scroll scrollbar-hide">
             <div className="flex items-center p-2 mb-2">
               <ChevronDownIcon className="h-3 mr-2" />
               <h4 className="font-semibold">channels</h4>
-              <PlusIcon className="h-6 ml-auto cursor-pointer hover:text-white" 
-              onClick={handleAddChannel}/>
-              
+              <PlusIcon
+                className="h-6 ml-auto cursor-pointer hover:text-white"
+                onClick={handleAddChannel}
+              />
             </div>
-          
+
             <div className="flex flex-col space-y-2 px-2 mb-4">
-              <Channel className="mb-14" />
+              {channels?.docs.map((doc) =>{ return (
+                <Channel
+                id= {doc.id}
+                key= {doc.id}
+                channel = {doc.data().channelName}
+                />
+              )})}
             </div>
-           
           </div>
-          
         </div>
       </div>
     </>

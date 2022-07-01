@@ -4,12 +4,13 @@ import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCk3Jep7m0nWBF5-iAuCmXFgX9Lgx6LBPE",
-  authDomain: "discord-clone-768d4.firebaseapp.com",
-  projectId: "discord-clone-768d4",
-  storageBucket: "discord-clone-768d4.appspot.com",
-  messagingSenderId: "89139412998",
-  appId: "1:89139412998:web:243eb102fe14c096a1c387",
+  apiKey: "AIzaSyCtXXYTJp6O2rdGcfoAnLgm6AyVoYs5MMA",
+  authDomain: "discord-clone-36e39.firebaseapp.com",
+  projectId: "discord-clone-36e39",
+  storageBucket: "discord-clone-36e39.appspot.com",
+  messagingSenderId: "325773180643",
+  appId: "1:325773180643:web:ad81509a045b46ffcc0fd6",
+  measurementId: "G-YZ5V1BHP5K"
 };
 
 const app = firebase.initializeApp(firebaseConfig);
@@ -18,4 +19,4 @@ const db = app.firestore()
 const auth = firebase.auth()
 const provider = new firebase.auth.GoogleAuthProvider();
 
-export {auth, provider, db }
+export {auth, provider, db, app }
