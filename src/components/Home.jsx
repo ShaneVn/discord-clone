@@ -3,18 +3,18 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, app } from "../firebase";
 import { Navigate } from "react-router-dom";
 import ServerIcon from "./ServerIcon";
-import { ChevronDownIcon, PlusIcon } from "@heroicons/react/outline";
+import { ChevronDownIcon, CogIcon, MicrophoneIcon, PhoneIcon, PlusIcon } from "@heroicons/react/outline";
 import Channel from "./Channel";
 import { addDoc, collection, getFirestore, query } from "firebase/firestore";
 import firebase from "firebase/compat/app";
-import { useCollection } from 'react-firebase-hooks/firestore';
+import { useCollection } from "react-firebase-hooks/firestore";
 
 function Home() {
   const [user] = useAuthState(auth);
-  const [channels] = useCollection(query(collection(db, "channels")))
+  const [channels] = useCollection(db.collection("channels"));
 
-  
-  
+  console.log(channels);
+
   const handleAddChannel = async () => {
     const value = prompt("Enter a new channel name", "");
     if (value) {
@@ -29,10 +29,7 @@ function Home() {
     <>
       {!user && <Navigate replace to="/" />}
       <div className="flex h-screen">
-        <div
-          className="flex flex-col bg-discord_serverContainer space-y-3
-        p-3 min-w-max"
-        >
+        <div className="flex flex-col bg-discord_serverContainer space-y-3 p-3 min-w-max">
           <div className="server-default hover:bg-discord_purple">
             <img src="../topicon.png" alt="" className="h-5" />
           </div>
@@ -67,13 +64,42 @@ function Home() {
             </div>
 
             <div className="flex flex-col space-y-2 px-2 mb-4">
-              {channels?.docs.map((doc) =>{ return (
-                <Channel
-                id= {doc.id}
-                key= {doc.id}
-                channel = {doc.data().channelName}
-                />
-              )})}
+              {channels?.docs.map((doc) => {
+                return (
+                  <Channel
+                    id={doc.id}
+                    key={doc.id}
+                    channelName={doc.data().channelName}
+                  />
+                );
+              })}
+            </div>
+          </div>
+
+          <div>
+            <div >
+              <img
+                src={user?.photoURL}
+                alt=""
+                className="h-10 rounded-full"
+                onClick={() => auth.signOut()}
+              />
+              <h4 className="text-white text-xs font-medium">
+                {user?.displayName}
+                <span className="text-discord_userId block">#{user?.uid.substring(0, 4)}</span>
+              </h4>
+            </div>
+
+            <div className="text-gray-400 flex items-center">
+              <div>
+                <MicrophoneIcon className="h-5"/>
+              </div>
+              <div>
+                <PhoneIcon className="h-5"/>
+              </div>
+              <div>
+                <CogIcon className="h-5"/>
+              </div>
             </div>
           </div>
         </div>

@@ -15,7 +15,9 @@ module.exports = {
         discord_serverContainer: "#202225",
         discord_channelsBg:"#2f3136",
         discord_serverNameHoverBg:"#34373c",
-        discord_channel:"#8e9297"
+        discord_channel:"#8e9297",
+        discord_channelHoverBg:"#3a3c43",
+        discord_userId:"#b9bbbe"
       },
       height: {
         "83vh": "83vh",
