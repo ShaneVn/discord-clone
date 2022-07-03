@@ -76,33 +76,40 @@ function Home() {
             </div>
           </div>
 
-          <div>
-            <div >
+          <div className="flex bg-[#292b2f] p-2 justify-between items-center space-x-8  cursor-pointer" >
+            <div className="flex items-center space-x-1 ">
+              
               <img
                 src={user?.photoURL}
                 alt=""
                 className="h-10 rounded-full"
                 onClick={() => auth.signOut()}
               />
+             
               <h4 className="text-white text-xs font-medium">
                 {user?.displayName}
-                <span className="text-discord_userId block">#{user?.uid.substring(0, 4)}</span>
+                <span className="text-[#b9bbbe] block">#{user?.uid.substring(0, 4)}</span>
               </h4>
             </div>
 
             <div className="text-gray-400 flex items-center">
-              <div>
-                <MicrophoneIcon className="h-5"/>
+              
+              <div className="hover:bg-[#3a3c43] p-1 rounded-md ">
+                <MicrophoneIcon className="h-5 icon" />
               </div>
-              <div>
-                <PhoneIcon className="h-5"/>
+              <div className="hover:bg-[#3a3c43] p-1 rounded-md  ">
+                <PhoneIcon className="h-5 icon"/>
               </div>
-              <div>
-                <CogIcon className="h-5"/>
+              <div className="hover:bg-[#3a3c43] p-1 rounded-md ">
+                <CogIcon className="h-5 icon"/>
               </div>
+              
             </div>
           </div>
         </div>
+
+
+        
       </div>
     </>
   );
