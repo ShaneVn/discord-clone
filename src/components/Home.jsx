@@ -8,22 +8,24 @@ import Channel from "./Channel";
 import { addDoc, collection, getFirestore, query } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 import { useCollection } from "react-firebase-hooks/firestore";
+import Chat from "./Chat";
 
 function Home() {
   const [user] = useAuthState(auth);
   const [channels] = useCollection(db.collection("channels"));
 
-  console.log(channels);
+  
+// create channel to firebase
+  const handleAddChannel = () => {
+    const channelName = prompt("Enter a new channel name");
 
-  const handleAddChannel = async () => {
-    const value = prompt("Enter a new channel name", "");
-    if (value) {
-      addDoc(collection(db, "channels"), {
-        channelName: value,
-        timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+    if (channelName) {
+      db.collection("channels").add({
+        channelName: channelName,
       });
     }
   };
+
 
   return (
     <>
@@ -109,7 +111,10 @@ function Home() {
         </div>
 
 
-        
+            <div className="bg-[#36393f] flex-grow">
+              <Chat/>
+            </div>
+         
       </div>
     </>
   );
